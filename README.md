@@ -46,3 +46,14 @@ I used the official OctoPrint image here. Things to note:
   * `/usr/bin/vcgencmd:/usr/bin/vcgencmd:ro`
   * `/usr/lib/aarch64-linux-gnu/libvcos.so.0:/usr/lib/aarch64-linux-gnu/libvcos.so.0:ro`
   * `/usr/lib/aarch64-linux-gnu/libvchiq_arm.so.0:/usr/lib/aarch64-linux-gnu/libvchiq_arm.so.0:ro`
+
+### Docker Compose
+
+I added a docker-compose file that is necessary in order to use this repository using the Portainer.io platform.
+
+Here are the unique bits compared to the original docker-compose file from the original guide post:
+
+* `- INPUT_FLAGS=-r 1640x1232 -f 10` these camera settings are for the Pi Camera Module V2
+* `- /dev/ttyUSB0:/dev/ttyUSB0` this device is for my Ender 5 printer when hooked up directly to the Pi 4
+* `- 9001:80` Changed the internal port for the octoprint because I like to keep 80 clear
+* `- /opt/Octoprint/data/octoprint:/octoprint` I like to put all my docker stacks into the OPT folder with a bit more organization
