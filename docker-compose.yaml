@@ -1,4 +1,4 @@
-version: "3"
+ version: "3"
 
 services:
   mjpg-streamer:
@@ -10,7 +10,7 @@ services:
     ports:
       - 8080:8080
     environment:
-      - INPUT_FLAGS=-r 1920x1080 -f 30
+      - INPUT_FLAGS=-r 1640x1232 -f 10
       - OUTPUT_FLAGS=-w ./www
     volumes:
       - /run/udev:/run/udev:ro
@@ -20,11 +20,11 @@ services:
     restart: always
     privileged: true
     ports:
-      - 80:80
+      - 9001:80
     devices:
-      - /dev/ttyACM0:/dev/ttyACM0
+      - /dev/ttyUSB0:/dev/ttyUSB0
     volumes:
-      - ./data/octoprint:/octoprint
+      - /opt/Octoprint/data/octoprint:/octoprint
       - /proc/cpuinfo:/proc/cpuinfo:ro
       - /usr/bin/vcgencmd:/usr/bin/vcgencmd:ro
       - /usr/lib/aarch64-linux-gnu/libvcos.so.0:/usr/lib/aarch64-linux-gnu/libvcos.so.0:ro
